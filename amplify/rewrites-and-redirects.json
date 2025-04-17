@@ -1,0 +1,8 @@
+[
+    {
+      "source": "/api/<*>",
+      "target": "http://prod-env.eba-33eqiavs.us-east-1.elasticbeanstalk.com/api/<*>",
+      "status": "200",
+      "condition": null
+    }
+]
