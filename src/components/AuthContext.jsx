@@ -14,29 +14,24 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await axios.get(apiConfig.getCheckAuthUrl(), {
         withCredentials: true, // Include cookies in the request
-        timeout: 5000
+        timeout: 3000
       });
 
-      setUser(response.data.isAuthenticated ? response.data.user : null);
-      setError(null); // Clear any previous errors
-      return response.data.isAuthenticated;
+      const currentUser = response.data.isAuthenticated ? response.data.user : null;
+      setUser(currentUser); // Update user state
+      return currentUser;
     } catch (err) {
       console.error('Authentication check failed:', err);
       setUser(null);
-      setError(err.response?.data?.message || 'Authentication check failed');
-      return false;
+      return null;
     } finally {
-      console.log('Auth check completed');
-      setLoading(false); // Set loading to false after the check
+      setLoading(false); 
     }
   };
 
-  // Automatically check auth status when the app loads
   useEffect(() => {
-    const interval = setInterval(() => {
-      checkAuth();
-    }, 15 * 60 * 1000); // Check every 15 minutes
-
+    checkAuth();
+    const interval = setInterval(checkAuth, 10000); // Check every 15 minutes
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, []);
 
