@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     checkAuth();
-    const interval = setInterval(checkAuth, 10000); // Check every 15 minutes
+    const interval = setInterval(checkAuth, 15 * 60 * 1000); // Check every 15 minutes
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, []);
 
