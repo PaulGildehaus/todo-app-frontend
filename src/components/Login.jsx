@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useLocation } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 import { 
@@ -18,6 +18,8 @@ function Login() {
     const navigate = useNavigate();
     const { user } = useAuth();
     const [isLoading, setIsLoading] = React.useState(false);
+    const location = useLocation();
+    const [error, setError] = React.useState(location.state?.authError || null);
 
     // Check if user is already authenticated, if so redirect to home page
     useEffect(() => {
@@ -36,6 +38,11 @@ function Login() {
   return (
     <Container component="main" maxWidth="xs">
         <Paper elevation={3} sx={authStyles.rootContainer}>
+            {error && (
+                <Alert severity="error" sx={{ width: '100%', mb: 2 }}>
+                    {error}
+                </Alert>
+            )}
             <Typography component="h1" variant="h5" sx={{ mb: 2 }}>
                 Todo List App Login
             </Typography>

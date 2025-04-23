@@ -1,16 +1,25 @@
-import './App.css';
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useAuth } from './components/AuthContext';
 import Home from './components/Home';
 import Login from './components/Login';
 import Callback from './components/Callback';
-import ProtectedRoute from './components/ProtectedRoute';
+
+function ProtectedRoute({ children }) {
+    const {user, loading} = useAuth();
+
+    if (loading) {
+        return <div>Loading authentication state...</div>;
+    }
+
+    return user ? children : <Navigate to="/login" replace />;
+}
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/callback" element={<Callback />} />
         <Route 
           path="/"
           element={
@@ -19,7 +28,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/callback" element={<Callback />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   )

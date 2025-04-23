@@ -8,13 +8,21 @@ function Callback() {
 
     useEffect(() => {
         const handleCallback = async () => {
-            await checkAuth(); 
-            navigate('/'); 
+            try {
+                const isAuthenticated = await checkAuth();
+                navigate(isAuthenticated ? '/' : '/login', {
+                    state: {authError: !isAuthenticated && 'Authentication failed.'}
+                });
+            } catch (err) {
+                navigate('/login', {
+                    state: {authError: err.message || 'Authentication failed.'}
+                });
+            }
         };
         handleCallback();
     }, [navigate, checkAuth]);
 
-    return <div>Loading...</div>;
+    return <div>Authenticating...</div>;
 }
 
 export default Callback;
