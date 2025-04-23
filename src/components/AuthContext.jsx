@@ -17,23 +17,16 @@ export const AuthProvider = ({ children }) => {
         timeout: 5000
       });
 
-      console.log('Auth check response:', response.data); // Log the response for debugging
-      
-      if (response.data.isAuthenticated) {
-        setUser(response.data.user);
-        setError(null);
-      } else {
-        setUser(null);
-        setError('User not authenticated');
-      }
+      setUser(response.data.isAuthenticated ? response.data.user : null);
+      setError(null); // Clear any previous errors
       return response.data.isAuthenticated;
-
     } catch (err) {
       console.error('Authentication check failed:', err);
       setUser(null);
       setError(err.response?.data?.message || 'Authentication check failed');
       return false;
     } finally {
+      console.log('Auth check completed');
       setLoading(false); // Set loading to false after the check
     }
   };
