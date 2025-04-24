@@ -32,6 +32,7 @@ function Home() {
     fetchTasks();
   }, []);
 
+  // Defining the main component for the home page
   return (
     <div className="App">
       <Header user={user} setUser={setUser} />

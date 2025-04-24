@@ -18,6 +18,7 @@ import {
 } from '@mui/icons-material';
 import api from '../utils/api';
 
+// Main component for displaying tasks and managing their state
 function TaskContainer({ tasks, setTasks, setOpenAddDialog, setSelectedTask, setOpenEditDialog }) {
     const [tabValue, setTabValue] = useState(0);
     
@@ -30,6 +31,7 @@ function TaskContainer({ tasks, setTasks, setOpenAddDialog, setSelectedTask, set
         setOpenEditDialog(true);
     };
 
+    // Function to toggle task completion status
     const toggleTaskCompletion = async (taskId, e) => {
         e.stopPropagation();
         try {

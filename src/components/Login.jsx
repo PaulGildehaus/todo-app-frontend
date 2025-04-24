@@ -36,6 +36,7 @@ function Login() {
         window.location.href = apiConfig.getGoogleAuthUrl();
     };
 
+    // Error message handling and a typical login UI
   return (
     <Container component="main" maxWidth="xs">
         <Paper elevation={3} sx={authStyles.rootContainer}>

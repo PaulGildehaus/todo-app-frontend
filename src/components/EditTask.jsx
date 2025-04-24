@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import api from '../utils/api';
 
-
+// EditTask component for editing existing tasks through a dialog popup
 function EditTask({ tasks, setTasks, setOpenEditDialog, selectedTask, setSelectedTask }) {
     const [isSaving, setIsSaving] = useState(false);
 

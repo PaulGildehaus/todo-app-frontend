@@ -8,6 +8,7 @@ import {
   TextField,
 } from '@mui/material';
 
+// AddTask component for adding new tasks through a dialog popup
 function AddTask({tasks, setTasks, setOpenAddDialog}) {
     const [newTask, setNewTask] = useState('');
     const [description, setDescription] = useState('');
@@ -23,7 +24,6 @@ function AddTask({tasks, setTasks, setOpenAddDialog}) {
                 description,
                 date: date ? new Date(date).toISOString() : null,
             });
-            console.log('Task created:', response.data);
             setTasks([...tasks, response.data]);
         } catch (error) {
             console.error('Failed to create task:', error.response?.data || error.message);

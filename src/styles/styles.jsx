@@ -1,4 +1,4 @@
-
+// Location of reusable styles for the application
 export const authStyles = {
     rootContainer: {
       mt: 8,

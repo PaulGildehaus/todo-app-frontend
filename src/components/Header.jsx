@@ -10,6 +10,7 @@ import {authStyles} from '../styles/styles';
 import { useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 
+// Header component for the application including the title and logout button
 function Header({user, setUser}) {
   const navigate = useNavigate();
 

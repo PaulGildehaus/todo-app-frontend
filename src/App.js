@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Callback from './components/Callback';
 import { useEffect } from 'react';
 
+// Define a ProtectedRoute component to protect routes that require authentication, requiring the user to be logged in to access them.
 function ProtectedRoute({ children }) {
     const {user, loading} = useAuth();
     const navigate = useNavigate();
@@ -22,6 +23,8 @@ function ProtectedRoute({ children }) {
     return user ? children : null;
 }
 
+// Define the main App component, which sets up the routing for the application.
+// The App component uses React Router to define the routes for the application, including a login route, a callback route, and a protected home route.
 function App() {
   return (
     <Router>

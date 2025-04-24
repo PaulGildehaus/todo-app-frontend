@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import apiConfig from '../utils/apiConfig';
 
+// Create a context for authentication that will provide auth state and functions to the components
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -29,12 +30,14 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Regularly check authentication status during the app lifecycle
   useEffect(() => {
     checkAuth();
     const interval = setInterval(checkAuth, 15 * 60 * 1000); // Check every 15 minutes
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, []);
 
+  // Wrapper component to provide auth context to children components
   return (
     <AuthContext.Provider value={{ 
       user, 

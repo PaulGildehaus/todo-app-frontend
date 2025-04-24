@@ -17,6 +17,8 @@ function ErrorFallback({ error }) {
   );
 }
 
+// Render the application
+// The root element is the main entry point for the React application, where the entire app is rendered into the DOM.
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
